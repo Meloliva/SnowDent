@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SnowDentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="IdCita" />
+          </Key>
+          <Property Name="IdCita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PacienteDNI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="OdontologoId" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="EspecialidadId" />
+          </Key>
+          <Property Name="EspecialidadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialClinico">
+          <Key>
+            <PropertyRef Name="IdHistoriaClinica" />
+          </Key>
+          <Property Name="IdHistoriaClinica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CitaId" Type="int" Nullable="false" />
+          <Property Name="HistorialGeneralId" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdTipoTratamiento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialGeneral">
+          <Key>
+            <PropertyRef Name="IdHistoriaGeneral" />
+          </Key>
+          <Property Name="IdHistoriaGeneral" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PacienteDNI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Odontologo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="DNI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TurnoId" Type="int" Nullable="false" />
+          <Property Name="EspecialidadId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Celular" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Genero" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoTratamiento">
+          <Key>
+            <PropertyRef Name="IdTipoTratamiento" />
+          </Key>
+          <Property Name="IdTipoTratamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tratamiento">
+          <Key>
+            <PropertyRef Name="IdTratamiento" />
+          </Key>
+          <Property Name="IdTratamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CitaId" Type="int" Nullable="false" />
+          <Property Name="TipoId" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FechaProximaCita" Type="date" Nullable="false" />
+          <Property Name="HoraProximaCita" Type="time" Precision="7" Nullable="false" />
+          <Property Name="InicioTratamiento" Type="date" Nullable="false" />
+          <Property Name="FinTratamiento" Type="date" Nullable="false" />
+          <Property Name="IdHistorialClinico" Type="int" Nullable="false" />
+          <Property Name="Diagnostico" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="TurnoId" />
+          </Key>
+          <Property Name="TurnoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoraInicio" Type="time" Precision="7" Nullable="false" />
+          <Property Name="HoraFin" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Citas_Odontologos">
+          <End Role="Odontologo" Type="Self.Odontologo" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odontologo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="OdontologoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Citas_Pacientes">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="PacienteDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistClinico_Citas">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="1" />
+          <End Role="HistorialClinico" Type="Self.HistorialClinico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="IdCita" />
+            </Principal>
+            <Dependent Role="HistorialClinico">
+              <PropertyRef Name="CitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistGen_Pacientes">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="HistorialGeneral" Type="Self.HistorialGeneral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="HistorialGeneral">
+              <PropertyRef Name="PacienteDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialClinico_HistorialGeneral">
+          <End Role="HistorialGeneral" Type="Self.HistorialGeneral" Multiplicity="1" />
+          <End Role="HistorialClinico" Type="Self.HistorialClinico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistorialGeneral">
+              <PropertyRef Name="IdHistoriaGeneral" />
+            </Principal>
+            <Dependent Role="HistorialClinico">
+              <PropertyRef Name="HistorialGeneralId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialClinico_TipoTratamiento">
+          <End Role="TipoTratamiento" Type="Self.TipoTratamiento" Multiplicity="1" />
+          <End Role="HistorialClinico" Type="Self.HistorialClinico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTratamiento">
+              <PropertyRef Name="IdTipoTratamiento" />
+            </Principal>
+            <Dependent Role="HistorialClinico">
+              <PropertyRef Name="IdTipoTratamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odontologo_Especialidad">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+          <End Role="Odontologo" Type="Self.Odontologo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="EspecialidadId" />
+            </Principal>
+            <Dependent Role="Odontologo">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odontologo_Turno">
+          <End Role="Turno" Type="Self.Turno" Multiplicity="1" />
+          <End Role="Odontologo" Type="Self.Odontologo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="TurnoId" />
+            </Principal>
+            <Dependent Role="Odontologo">
+              <PropertyRef Name="TurnoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odontologos_Usuarios">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Odontologo" Type="Self.Odontologo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Odontologo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tratamiento_Cita">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="1" />
+          <End Role="Tratamiento" Type="Self.Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="IdCita" />
+            </Principal>
+            <Dependent Role="Tratamiento">
+              <PropertyRef Name="CitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tratamiento_HistorialClinico">
+          <End Role="HistorialClinico" Type="Self.HistorialClinico" Multiplicity="1" />
+          <End Role="Tratamiento" Type="Self.Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistorialClinico">
+              <PropertyRef Name="IdHistoriaClinica" />
+            </Principal>
+            <Dependent Role="Tratamiento">
+              <PropertyRef Name="IdHistorialClinico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tratamientos_Tipos">
+          <End Role="TipoTratamiento" Type="Self.TipoTratamiento" Multiplicity="1" />
+          <End Role="Tratamiento" Type="Self.Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTratamiento">
+              <PropertyRef Name="IdTipoTratamiento" />
+            </Principal>
+            <Dependent Role="Tratamiento">
+              <PropertyRef Name="TipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SnowDentModelStoreContainer">
+          <EntitySet Name="Cita" EntityType="Self.Cita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialClinico" EntityType="Self.HistorialClinico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialGeneral" EntityType="Self.HistorialGeneral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Odontologo" EntityType="Self.Odontologo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoTratamiento" EntityType="Self.TipoTratamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tratamiento" EntityType="Self.Tratamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Citas_Odontologos" Association="Self.FK_Citas_Odontologos">
+            <End Role="Odontologo" EntitySet="Odontologo" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Citas_Pacientes" Association="Self.FK_Citas_Pacientes">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistClinico_Citas" Association="Self.FK_HistClinico_Citas">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="HistorialClinico" EntitySet="HistorialClinico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistGen_Pacientes" Association="Self.FK_HistGen_Pacientes">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="HistorialGeneral" EntitySet="HistorialGeneral" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialClinico_HistorialGeneral" Association="Self.FK_HistorialClinico_HistorialGeneral">
+            <End Role="HistorialGeneral" EntitySet="HistorialGeneral" />
+            <End Role="HistorialClinico" EntitySet="HistorialClinico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialClinico_TipoTratamiento" Association="Self.FK_HistorialClinico_TipoTratamiento">
+            <End Role="TipoTratamiento" EntitySet="TipoTratamiento" />
+            <End Role="HistorialClinico" EntitySet="HistorialClinico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odontologo_Especialidad" Association="Self.FK_Odontologo_Especialidad">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Odontologo" EntitySet="Odontologo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odontologo_Turno" Association="Self.FK_Odontologo_Turno">
+            <End Role="Turno" EntitySet="Turno" />
+            <End Role="Odontologo" EntitySet="Odontologo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odontologos_Usuarios" Association="Self.FK_Odontologos_Usuarios">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Odontologo" EntitySet="Odontologo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tratamiento_Cita" Association="Self.FK_Tratamiento_Cita">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="Tratamiento" EntitySet="Tratamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tratamiento_HistorialClinico" Association="Self.FK_Tratamiento_HistorialClinico">
+            <End Role="HistorialClinico" EntitySet="HistorialClinico" />
+            <End Role="Tratamiento" EntitySet="Tratamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tratamientos_Tipos" Association="Self.FK_Tratamientos_Tipos">
+            <End Role="TipoTratamiento" EntitySet="TipoTratamiento" />
+            <End Role="Tratamiento" EntitySet="Tratamiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SnowDentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="IdCita" />
+          </Key>
+          <Property Name="IdCita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PacienteDNI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OdontologoId" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Odontologo" Relationship="Self.FK_Citas_Odontologos" FromRole="Cita" ToRole="Odontologo" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Citas_Pacientes" FromRole="Cita" ToRole="Paciente" />
+          <NavigationProperty Name="HistorialClinico" Relationship="Self.FK_HistClinico_Citas" FromRole="Cita" ToRole="HistorialClinico" />
+          <NavigationProperty Name="Tratamiento" Relationship="Self.FK_Tratamiento_Cita" FromRole="Cita" ToRole="Tratamiento" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="EspecialidadId" />
+          </Key>
+          <Property Name="EspecialidadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Odontologo" Relationship="Self.FK_Odontologo_Especialidad" FromRole="Especialidad" ToRole="Odontologo" />
+        </EntityType>
+        <EntityType Name="HistorialClinico">
+          <Key>
+            <PropertyRef Name="IdHistoriaClinica" />
+          </Key>
+          <Property Name="IdHistoriaClinica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CitaId" Type="Int32" Nullable="false" />
+          <Property Name="HistorialGeneralId" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdTipoTratamiento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_HistClinico_Citas" FromRole="HistorialClinico" ToRole="Cita" />
+          <NavigationProperty Name="HistorialGeneral" Relationship="Self.FK_HistorialClinico_HistorialGeneral" FromRole="HistorialClinico" ToRole="HistorialGeneral" />
+          <NavigationProperty Name="TipoTratamiento" Relationship="Self.FK_HistorialClinico_TipoTratamiento" FromRole="HistorialClinico" ToRole="TipoTratamiento" />
+          <NavigationProperty Name="Tratamiento" Relationship="Self.FK_Tratamiento_HistorialClinico" FromRole="HistorialClinico" ToRole="Tratamiento" />
+        </EntityType>
+        <EntityType Name="HistorialGeneral">
+          <Key>
+            <PropertyRef Name="IdHistoriaGeneral" />
+          </Key>
+          <Property Name="IdHistoriaGeneral" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PacienteDNI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HistorialClinico" Relationship="Self.FK_HistorialClinico_HistorialGeneral" FromRole="HistorialGeneral" ToRole="HistorialClinico" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_HistGen_Pacientes" FromRole="HistorialGeneral" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Odontologo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TurnoId" Type="Int32" Nullable="false" />
+          <Property Name="EspecialidadId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Citas_Odontologos" FromRole="Odontologo" ToRole="Cita" />
+          <NavigationProperty Name="Especialidad" Relationship="Self.FK_Odontologo_Especialidad" FromRole="Odontologo" ToRole="Especialidad" />
+          <NavigationProperty Name="Turno" Relationship="Self.FK_Odontologo_Turno" FromRole="Odontologo" ToRole="Turno" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Odontologos_Usuarios" FromRole="Odontologo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Genero" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Citas_Pacientes" FromRole="Paciente" ToRole="Cita" />
+          <NavigationProperty Name="HistorialGeneral" Relationship="Self.FK_HistGen_Pacientes" FromRole="Paciente" ToRole="HistorialGeneral" />
+        </EntityType>
+        <EntityType Name="TipoTratamiento">
+          <Key>
+            <PropertyRef Name="IdTipoTratamiento" />
+          </Key>
+          <Property Name="IdTipoTratamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HistorialClinico" Relationship="Self.FK_HistorialClinico_TipoTratamiento" FromRole="TipoTratamiento" ToRole="HistorialClinico" />
+          <NavigationProperty Name="Tratamiento" Relationship="Self.FK_Tratamientos_Tipos" FromRole="TipoTratamiento" ToRole="Tratamiento" />
+        </EntityType>
+        <EntityType Name="Tratamiento">
+          <Key>
+            <PropertyRef Name="IdTratamiento" />
+          </Key>
+          <Property Name="IdTratamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CitaId" Type="Int32" Nullable="false" />
+          <Property Name="TipoId" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaProximaCita" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HoraProximaCita" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="InicioTratamiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FinTratamiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdHistorialClinico" Type="Int32" Nullable="false" />
+          <Property Name="Diagnostico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Tratamiento_Cita" FromRole="Tratamiento" ToRole="Cita" />
+          <NavigationProperty Name="HistorialClinico" Relationship="Self.FK_Tratamiento_HistorialClinico" FromRole="Tratamiento" ToRole="HistorialClinico" />
+          <NavigationProperty Name="TipoTratamiento" Relationship="Self.FK_Tratamientos_Tipos" FromRole="Tratamiento" ToRole="TipoTratamiento" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="TurnoId" />
+          </Key>
+          <Property Name="TurnoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoraInicio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="HoraFin" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Odontologo" Relationship="Self.FK_Odontologo_Turno" FromRole="Turno" ToRole="Odontologo" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Odontologo" Relationship="Self.FK_Odontologos_Usuarios" FromRole="Usuario" ToRole="Odontologo" />
+        </EntityType>
+        <Association Name="FK_Citas_Odontologos">
+          <End Role="Odontologo" Type="Self.Odontologo" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odontologo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="OdontologoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Citas_Pacientes">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="PacienteDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistClinico_Citas">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="1" />
+          <End Role="HistorialClinico" Type="Self.HistorialClinico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="IdCita" />
+            </Principal>
+            <Dependent Role="HistorialClinico">
+              <PropertyRef Name="CitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tratamiento_Cita">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="1" />
+          <End Role="Tratamiento" Type="Self.Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="IdCita" />
+            </Principal>
+            <Dependent Role="Tratamiento">
+              <PropertyRef Name="CitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odontologo_Especialidad">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+          <End Role="Odontologo" Type="Self.Odontologo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="EspecialidadId" />
+            </Principal>
+            <Dependent Role="Odontologo">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialClinico_HistorialGeneral">
+          <End Role="HistorialGeneral" Type="Self.HistorialGeneral" Multiplicity="1" />
+          <End Role="HistorialClinico" Type="Self.HistorialClinico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistorialGeneral">
+              <PropertyRef Name="IdHistoriaGeneral" />
+            </Principal>
+            <Dependent Role="HistorialClinico">
+              <PropertyRef Name="HistorialGeneralId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistorialClinico_TipoTratamiento">
+          <End Role="TipoTratamiento" Type="Self.TipoTratamiento" Multiplicity="1" />
+          <End Role="HistorialClinico" Type="Self.HistorialClinico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTratamiento">
+              <PropertyRef Name="IdTipoTratamiento" />
+            </Principal>
+            <Dependent Role="HistorialClinico">
+              <PropertyRef Name="IdTipoTratamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tratamiento_HistorialClinico">
+          <End Role="HistorialClinico" Type="Self.HistorialClinico" Multiplicity="1" />
+          <End Role="Tratamiento" Type="Self.Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistorialClinico">
+              <PropertyRef Name="IdHistoriaClinica" />
+            </Principal>
+            <Dependent Role="Tratamiento">
+              <PropertyRef Name="IdHistorialClinico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistGen_Pacientes">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="HistorialGeneral" Type="Self.HistorialGeneral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="HistorialGeneral">
+              <PropertyRef Name="PacienteDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odontologo_Turno">
+          <End Role="Turno" Type="Self.Turno" Multiplicity="1" />
+          <End Role="Odontologo" Type="Self.Odontologo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="TurnoId" />
+            </Principal>
+            <Dependent Role="Odontologo">
+              <PropertyRef Name="TurnoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odontologos_Usuarios">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Odontologo" Type="Self.Odontologo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Odontologo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tratamientos_Tipos">
+          <End Role="TipoTratamiento" Type="Self.TipoTratamiento" Multiplicity="1" />
+          <End Role="Tratamiento" Type="Self.Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTratamiento">
+              <PropertyRef Name="IdTipoTratamiento" />
+            </Principal>
+            <Dependent Role="Tratamiento">
+              <PropertyRef Name="TipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SnowDentEntities7" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Citas" EntityType="Self.Cita" />
+          <EntitySet Name="Especialidades" EntityType="Self.Especialidad" />
+          <EntitySet Name="HistorialesClinicos" EntityType="Self.HistorialClinico" />
+          <EntitySet Name="HistorialesGenerales" EntityType="Self.HistorialGeneral" />
+          <EntitySet Name="Odontologos" EntityType="Self.Odontologo" />
+          <EntitySet Name="Pacientes" EntityType="Self.Paciente" />
+          <EntitySet Name="TiposTratamientos" EntityType="Self.TipoTratamiento" />
+          <EntitySet Name="Tratamientos" EntityType="Self.Tratamiento" />
+          <EntitySet Name="Turnos" EntityType="Self.Turno" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Citas_Odontologos" Association="Self.FK_Citas_Odontologos">
+            <End Role="Odontologo" EntitySet="Odontologos" />
+            <End Role="Cita" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Citas_Pacientes" Association="Self.FK_Citas_Pacientes">
+            <End Role="Paciente" EntitySet="Pacientes" />
+            <End Role="Cita" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistClinico_Citas" Association="Self.FK_HistClinico_Citas">
+            <End Role="Cita" EntitySet="Citas" />
+            <End Role="HistorialClinico" EntitySet="HistorialesClinicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tratamiento_Cita" Association="Self.FK_Tratamiento_Cita">
+            <End Role="Cita" EntitySet="Citas" />
+            <End Role="Tratamiento" EntitySet="Tratamientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odontologo_Especialidad" Association="Self.FK_Odontologo_Especialidad">
+            <End Role="Especialidad" EntitySet="Especialidades" />
+            <End Role="Odontologo" EntitySet="Odontologos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialClinico_HistorialGeneral" Association="Self.FK_HistorialClinico_HistorialGeneral">
+            <End Role="HistorialGeneral" EntitySet="HistorialesGenerales" />
+            <End Role="HistorialClinico" EntitySet="HistorialesClinicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistorialClinico_TipoTratamiento" Association="Self.FK_HistorialClinico_TipoTratamiento">
+            <End Role="TipoTratamiento" EntitySet="TiposTratamientos" />
+            <End Role="HistorialClinico" EntitySet="HistorialesClinicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tratamiento_HistorialClinico" Association="Self.FK_Tratamiento_HistorialClinico">
+            <End Role="HistorialClinico" EntitySet="HistorialesClinicos" />
+            <End Role="Tratamiento" EntitySet="Tratamientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistGen_Pacientes" Association="Self.FK_HistGen_Pacientes">
+            <End Role="Paciente" EntitySet="Pacientes" />
+            <End Role="HistorialGeneral" EntitySet="HistorialesGenerales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odontologo_Turno" Association="Self.FK_Odontologo_Turno">
+            <End Role="Turno" EntitySet="Turnos" />
+            <End Role="Odontologo" EntitySet="Odontologos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odontologos_Usuarios" Association="Self.FK_Odontologos_Usuarios">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Odontologo" EntitySet="Odontologos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tratamientos_Tipos" Association="Self.FK_Tratamientos_Tipos">
+            <End Role="TipoTratamiento" EntitySet="TiposTratamientos" />
+            <End Role="Tratamiento" EntitySet="Tratamientos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SnowDentModelStoreContainer" CdmEntityContainer="SnowDentEntities7">
+          <EntitySetMapping Name="Citas">
+            <EntityTypeMapping TypeName="SnowDentModel.Cita">
+              <MappingFragment StoreEntitySet="Cita">
+                <ScalarProperty Name="IdCita" ColumnName="IdCita" />
+                <ScalarProperty Name="PacienteDNI" ColumnName="PacienteDNI" />
+                <ScalarProperty Name="OdontologoId" ColumnName="OdontologoId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidades">
+            <EntityTypeMapping TypeName="SnowDentModel.Especialidad">
+              <MappingFragment StoreEntitySet="Especialidad">
+                <ScalarProperty Name="EspecialidadId" ColumnName="EspecialidadId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialesClinicos">
+            <EntityTypeMapping TypeName="SnowDentModel.HistorialClinico">
+              <MappingFragment StoreEntitySet="HistorialClinico">
+                <ScalarProperty Name="IdHistoriaClinica" ColumnName="IdHistoriaClinica" />
+                <ScalarProperty Name="CitaId" ColumnName="CitaId" />
+                <ScalarProperty Name="HistorialGeneralId" ColumnName="HistorialGeneralId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdTipoTratamiento" ColumnName="IdTipoTratamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialesGenerales">
+            <EntityTypeMapping TypeName="SnowDentModel.HistorialGeneral">
+              <MappingFragment StoreEntitySet="HistorialGeneral">
+                <ScalarProperty Name="IdHistoriaGeneral" ColumnName="IdHistoriaGeneral" />
+                <ScalarProperty Name="PacienteDNI" ColumnName="PacienteDNI" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odontologos">
+            <EntityTypeMapping TypeName="SnowDentModel.Odontologo">
+              <MappingFragment StoreEntitySet="Odontologo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="TurnoId" ColumnName="TurnoId" />
+                <ScalarProperty Name="EspecialidadId" ColumnName="EspecialidadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacientes">
+            <EntityTypeMapping TypeName="SnowDentModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposTratamientos">
+            <EntityTypeMapping TypeName="SnowDentModel.TipoTratamiento">
+              <MappingFragment StoreEntitySet="TipoTratamiento">
+                <ScalarProperty Name="IdTipoTratamiento" ColumnName="IdTipoTratamiento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tratamientos">
+            <EntityTypeMapping TypeName="SnowDentModel.Tratamiento">
+              <MappingFragment StoreEntitySet="Tratamiento">
+                <ScalarProperty Name="IdTratamiento" ColumnName="IdTratamiento" />
+                <ScalarProperty Name="CitaId" ColumnName="CitaId" />
+                <ScalarProperty Name="TipoId" ColumnName="TipoId" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaProximaCita" ColumnName="FechaProximaCita" />
+                <ScalarProperty Name="HoraProximaCita" ColumnName="HoraProximaCita" />
+                <ScalarProperty Name="InicioTratamiento" ColumnName="InicioTratamiento" />
+                <ScalarProperty Name="FinTratamiento" ColumnName="FinTratamiento" />
+                <ScalarProperty Name="IdHistorialClinico" ColumnName="IdHistorialClinico" />
+                <ScalarProperty Name="Diagnostico" ColumnName="Diagnostico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turnos">
+            <EntityTypeMapping TypeName="SnowDentModel.Turno">
+              <MappingFragment StoreEntitySet="Turno">
+                <ScalarProperty Name="TurnoId" ColumnName="TurnoId" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="SnowDentModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
