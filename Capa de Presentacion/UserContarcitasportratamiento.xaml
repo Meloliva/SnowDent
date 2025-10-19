@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="Capa_de_Presentacion.UserContarcitasportratamiento"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Capa_de_Presentacion"
+             mc:Ignorable="d" d:DesignWidth="1200" Height="534.929">
+
+    <Grid Background="Transparent">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="10,0,-10,0">
+            <StackPanel Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+
+                <!-- TÍTULO -->
+                <Border Background="White" CornerRadius="20" Padding="20"
+                        Margin="0,0,0,20" HorizontalAlignment="Stretch">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="4" Opacity="0.2"/>
+                    </Border.Effect>
+                    <TextBlock Text="Total de Citas por Tratamiento"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="#2C3E50"
+                               HorizontalAlignment="Center"/>
+                </Border>
+
+                <!-- CONTENIDO -->
+                <Border Background="White" CornerRadius="20" Padding="30"
+                        Margin="0,0,0,0" HorizontalAlignment="Stretch">
+                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+
+                        <!-- FILAS DE TRATAMIENTOS -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                            <TextBox Text="Ortodoncia" Width="250" Height="35" Background="#EAF7FF"
+                                     BorderBrush="Transparent" FontSize="13" VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                            <Label x:Name="lblOrtodoncia" Content="0" Width="50" Height="35" Background="#F2F2F2"
+                                   Margin="10,0,0,0" FontWeight="Bold" HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                            <TextBox Text="Implantes dentales" Width="250" Height="35" Background="#EAF7FF"
+                                     BorderBrush="Transparent" FontSize="13" VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                            <Label x:Name="lblImplantes" Content="0" Width="50" Height="35" Background="#F2F2F2"
+                                   Margin="10,0,0,0" FontWeight="Bold" HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                            <TextBox Text="Cirugías" Width="250" Height="35" Background="#EAF7FF"
+                                     BorderBrush="Transparent" FontSize="13" VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                            <Label x:Name="lblCirugias" Content="0" Width="50" Height="35" Background="#F2F2F2"
+                                   Margin="10,0,0,0" FontWeight="Bold" HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                            <TextBox Text="Odontopediatría" Width="250" Height="35" Background="#EAF7FF"
+                                     BorderBrush="Transparent" FontSize="13" VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                            <Label x:Name="lblPediatria" Content="0" Width="50" Height="35" Background="#F2F2F2"
+                                   Margin="10,0,0,0" FontWeight="Bold" HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                            <TextBox Text="Estética dental" Width="250" Height="35" Background="#EAF7FF"
+                                     BorderBrush="Transparent" FontSize="13" VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                            <Label x:Name="lblEstetica" Content="0" Width="50" Height="35" Background="#F2F2F2"
+                                   Margin="10,0,0,0" FontWeight="Bold" HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                            <TextBox Text="Odontogeriatría" Width="250" Height="35" Background="#EAF7FF"
+                                     BorderBrush="Transparent" FontSize="13" VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                            <Label x:Name="lblGeriatria" Content="0" Width="50" Height="35" Background="#F2F2F2"
+                                   Margin="10,0,0,0" FontWeight="Bold" HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

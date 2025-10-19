@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="336021d148a7415db0c1ad56ffcc72e8" Name="Diagram1">
+        <EntityTypeShape EntityType="SnowDentModel.Cita" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.Especialidad" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.HistorialClinico" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.HistorialGeneral" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.Odontologo" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.Paciente" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.TipoTratamiento" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.Tratamiento" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.Turno" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SnowDentModel.Usuario" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="SnowDentModel.FK_Citas_Odontologos" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_Citas_Pacientes" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_HistClinico_Citas" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_Tratamiento_Cita" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_Odontologo_Especialidad" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_HistorialClinico_HistorialGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_HistorialClinico_TipoTratamiento" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_Tratamiento_HistorialClinico" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_HistGen_Pacientes" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_Odontologo_Turno" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_Odontologos_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="SnowDentModel.FK_Tratamientos_Tipos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

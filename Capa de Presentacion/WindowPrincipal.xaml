@@ -1,0 +1,404 @@
+﻿<Window x:Class="Capa_de_Presentacion.WindowPrincipal" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Capa_de_Presentacion"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
+        mc:Ignorable="d"
+
+        Title="Snowdent" Height="600" Width="1000"
+        AllowsTransparency="True" WindowStyle="None"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="Transparent">
+
+    <Border CornerRadius="25" Background="#F0F8FF">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Background="#A593DC" CornerRadius="20" Margin="0,0,10,0">
+                <!-- Menú lateral -->
+                <StackPanel Grid.Column="0" Background="#A593DC" Margin="15,23,15,10" >
+
+                    <!-- Encabezado -->
+                    <Border Height="160" Background="Transparent">
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="Images/logo-principal.png" Width="149" Height="49" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Snowdent"
+                       FontFamily="Segoe UI"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       TextAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Reutilizable: Botón de menú -->
+                    <StackPanel>
+                        <!-- Usa este estilo en cada botón -->
+
+                        <!-- Copia esto para cada botón, cambiando solo el Text y el ícono -->
+
+                        <!-- Pacientes -->
+                        <Button x:Name="btnOdontologo" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+        Padding="0" HorizontalAlignment="Center" Click="btnOdontologo_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+                    Background="Transparent"
+                    CornerRadius="8"
+                    Padding="6"
+                    HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/paciente.png"
+                           Width="20" Height="20"
+                           Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                               Text="Registrar Odontologo
+"
+                               FontSize="14"
+                               FontFamily="Segoe UI"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnpaciente" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="Button_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/paciente.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Registrar Paciente
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btncita" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="btncita_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/calendario.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Agendar Cita
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnreporteporgenero" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="Button_Click_1">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/fluido-de-genero.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Cantidad por Género
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnconteocitasportratamiento" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="Button_Click_2">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/cuenta.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Citas por Traramiento
+                                                       "
+                                                       
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="tbrangofecha" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="tbrangofecha_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/Rango_Fecha.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Rango de Fecha
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btntratamientocurso" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="Button_Click_3">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/Historial.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Tratamientos en curso
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnHistorialclinico" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="btnHistorialclinico_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/HistorialClinico.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Historial Clínico
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btncasoclinico" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="btncasoclinico_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/Clinico.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Caso Clínico
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnduraciontratamiento" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="btnduraciontratamiento_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/Duracion.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Duración Tratamiento
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                                
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="btnsalir" Cursor="Hand" Background="Transparent" BorderThickness="0" Margin="0,5,0,0"
+Padding="0" HorizontalAlignment="Center" Click="btnsalir_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+            Background="Transparent"
+            CornerRadius="8"
+            Padding="6"
+            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="Images/cerrar-sesion.png"
+                   Width="20" Height="20"
+                   Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="text"
+                       Text="Salir
+                                                       "
+                       FontSize="14"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#60D0DF"/>
+                                            <Setter TargetName="text" Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+
+
+                        <!-- Sigue con Citas, Turnos, Historial, Reportes, Configuración, Salir del mismo modo -->
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!-- Contenido dinámico -->
+            <ContentControl Grid.Column="1" x:Name="MainContent" Margin="10"/>
+        </Grid>
+    </Border>
+</Window>
